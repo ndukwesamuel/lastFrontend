@@ -28,8 +28,10 @@ function Home() {
             className="border border-primary py-3 d-flex justify-content-between px-5"
           >
             <div> {data.body}</div>
+            
             <Link to={`/${data.id}`}>Readmore</Link>
           </div>
+
         ))}
       </div>
     </div>

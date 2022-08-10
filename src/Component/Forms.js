@@ -1,31 +1,28 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Create() {
+function Forms({ data, id }) {
   const navigate = useNavigate();
-
-  const [body, setBody] = useState("");
+  const [body, setBody] = useState(data.body);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = { body };
     console.log(data);
 
-    fetch("http://127.0.0.1:8000/task-create/", {
-      method: "POST",
+    fetch(`http://127.0.0.1:8000/task_list/${id}/update/`, {
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     }).then(() => {
       console.log("new data added");
     });
 
-    navigate("/");
+    navigate(`/${id}`);
   };
 
   return (
     <div>
-      Create
       <div>
         <textarea
           className="form-control"
@@ -43,4 +40,4 @@ function Create() {
   );
 }
 
-export default Create;
+export default Forms;
